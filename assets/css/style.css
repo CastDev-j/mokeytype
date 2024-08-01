@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root{
+    --color-lavender-magenta-50: #fcf4ff;
+    --color-lavender-magenta-100: #f8e7ff;
+    /* --color-lavender-magenta-200: #f2ceff;
+    --color-lavender-magenta-300: #eba8ff;
+    --color-lavender-magenta-400: #e58bfe; */
+    --color-lavender-magenta-500: #cf40f5;
+    /* --color-lavender-magenta-600: #b520d9;
+    --color-lavender-magenta-700: #9a16b5;
+    --color-lavender-magenta-800: #7f1593;
+    --color-lavender-magenta-900: #6b1778; */
+    --color-lavender-magenta-950: #450151;
+
+    --color-white-50: #ffffff;
+    --color-white-100: #efefef;
+    /* --color-white-200: #dcdcdc;
+    --color-white-300: #bdbdbd;
+    --color-white-400: #989898; */
+    --color-white-500: #7c7c7c;
+    /* --color-white-600: #656565;
+    --color-white-700: #525252;
+    --color-white-800: #464646;
+    --color-white-900: #3d3d3d; */
+    --color-white-950: #292929;
+
+    --color-mountain-meadow-50: #eefbf5;
+    /* --color-mountain-meadow-100: #d6f5e4;
+    --color-mountain-meadow-200: #b0eace;
+    --color-mountain-meadow-300: #7dd8b2;
+    --color-mountain-meadow-400: #40ba8b; */
+    --color-mountain-meadow-500: #24a577;
+    /* --color-mountain-meadow-600: #178460;
+    --color-mountain-meadow-700: #126a4f;
+    --color-mountain-meadow-800: #115440;
+    --color-mountain-meadow-900: #0f4536; */
+    --color-mountain-meadow-950: #07271e;
+    
+    --color-amaranth-50: #fff0f2;
+    --color-amaranth-100: #ffe2e7;
+    /* --color-amaranth-200: #ffcad5;
+    --color-amaranth-300: #ff9eb4;
+    --color-amaranth-400: #ff678d; */
+    --color-amaranth-500: #ff326a;
+    /* --color-amaranth-600: #eb0f55;
+    --color-amaranth-700: #ca0649;
+    --color-amaranth-800: #a90845;
+    --color-amaranth-900: #900b41; */
+    --color-amaranth-950: #51001f;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    
+    font-family: 'Roboto Mono', monospace;
+    
+    background-color: var(--color-lavender-magenta-50);
+    color: var(--color-white-900);
+}
+
+#game{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    padding: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+
+    border-radius: 8px;
+    
+    time{
+        color: var(--color-lavender-magenta-500);
+        font-size: 1.5rem;
+        text-align: start;
+    }
+
+    p{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3px 8px;
+        
+        c-word{
+        
+            border-bottom: 1.5px solid transparent;
+            transition: border-color .1s ease;
+
+            c-letter{
+                position: relative;
+                color: var(--color-white-500);
+
+                &.active::before{
+                    content: '|';
+                    position: absolute;
+
+                    left: -60%; 
+                    top: -20%;
+                    font-size: 1.2rem;
+
+                    animation: blink 1s infinite ease-in-out;
+                    color: var(--color-lavender-magenta-500);
+                }
+
+                &.is-last::before{
+                    left: 55%;
+                }
+
+                &.correct{
+                    color: var(--color-lavender-magenta-500);
+                }
+
+                &.wrong{
+                    color: var(--color-amaranth-500);
+                }
+            }
+
+            &.correct{
+                & c-letter{
+                    color: var(--color-mountain-meadow-500);
+                }
+            }
+
+            &.wrong{
+                border-bottom: 1.5px solid var(--color-amaranth-500);
+            }
+        }
+    }
+
+
+
+    input{
+        z-index: -999;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &.hidden{
+        display: none;
+    }
+}
+
+#results{
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+
+    padding: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+
+    border-radius: 8px;
+    background-color: var(--color-lavender-magenta-50);
+    color: var(--color-white-950);
+
+    h2{
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    p{
+        font-size: 1.5rem;
+        text-align: start;
+    }
+
+    button{
+        padding: .5rem 1rem;
+        border: none;
+        border-radius: 8px;
+        background-color: var(--color-lavender-magenta-500);
+        color: var(--color-white-50);
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: background-color .3s ease;
+
+        &:hover{
+            background-color: var(--color-lavender-magenta-950);
+        }
+    }
+
+    &.hidden{
+        display: none;
+    }
+}
+
+
+
+@keyframes blink {
+    0%, 25%{
+        opacity: 1;
+    }
+    50%, 75% {
+        opacity: 0;
+    }
+    
+}
