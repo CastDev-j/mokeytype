@@ -157,12 +157,13 @@ export default function monkeyGame($container) {
         $game.classList.add('hidden');
         $results.classList.remove('hidden');
 
+        const correctWords = $paragraph.querySelectorAll('c-word.correct').length;
         const correctLetters = $paragraph.querySelectorAll('c-letter.correct').length;
         const wrongLetters = $paragraph.querySelectorAll('c-letter.wrong').length;
 
         const totalLetters = correctLetters - wrongLetters;
 
-        const wps = totalLetters * 60 / INITIAL_TIME;
+        const wps = correctWords * 60 / INITIAL_TIME;
 
         const accuracy = totalLetters > 0 ?correctLetters / totalLetters * 100: 0;
 
@@ -173,3 +174,4 @@ export default function monkeyGame($container) {
 
 }
 
+ 
