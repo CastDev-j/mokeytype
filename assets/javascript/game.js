@@ -160,7 +160,7 @@ export default function monkeyGame($container) {
         const correctLetters = $paragraph.querySelectorAll('c-letter.correct').length;
         const wrongLetters = $paragraph.querySelectorAll('c-letter.wrong').length;
 
-        const totalLetters = correctLetters + wrongLetters;
+        const totalLetters = correctLetters - wrongLetters;
 
         const wps = totalLetters * 60 / INITIAL_TIME;
 
